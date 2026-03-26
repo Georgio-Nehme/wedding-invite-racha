@@ -2,10 +2,8 @@ import './styles.css';
 
 // Sample background images - using placeholder images
 const backgroundImages = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=1200&fit=crop',
-  'https://images.unsplash.com/photo-1528742891619-e21cf4c17138?w=1200&h=1200&fit=crop',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=1200&fit=crop',
-  'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&h=1200&fit=crop',
+  'C:\Users\Georgio\Desktop\wedd\copilot test\wedding invite\src\assets\image1.jpg',
+  'C:\Users\Georgio\Desktop\wedd\copilot test\wedding invite\src\assets\image2.jpg',
 ];
 
 let currentImageIndex = 0;

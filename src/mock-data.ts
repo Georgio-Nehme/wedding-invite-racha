@@ -3,7 +3,7 @@ export const sampleRSVPData = {
   inviteId: "sample_family_001",
   familyName: "Johnson Family",
   members: [
-    "Michael Johnson",
+    "Donald Trump",
     "Sarah Johnson",
     "Emma Johnson",
     "Daniel Johnson"

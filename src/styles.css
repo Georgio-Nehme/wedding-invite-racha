@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700;800&family=Montserrat:wght@400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -78,9 +80,10 @@ body {
 }
 
 .names {
-  font-size: 4rem;
-  font-weight: 300;
-  letter-spacing: 2px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 5.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
   margin-bottom: 20px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
@@ -205,12 +208,18 @@ body {
   min-height: 100vh;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .locations h2 {
+  grid-column: 1 / -1;
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   color: white;
   font-weight: 300;
   letter-spacing: 1px;
@@ -219,16 +228,12 @@ body {
 }
 
 .location-card {
-  max-width: 500px;
-  margin: 0 auto 50px;
-  background: linear-gradient(135deg, var(--primary-beige) 0%, var(--light-cream) 100%);
-  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(245, 230, 211, 0.95) 0%, rgba(250, 248, 245, 0.95) 100%);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(90, 74, 66, 0.15);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              box-shadow 0.4s ease,
-              border-color 0.4s ease;
-  border: 2px solid var(--secondary-gold);
+  box-shadow: 0 15px 50px rgba(90, 74, 66, 0.25);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 3px solid var(--secondary-gold);
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -236,6 +241,20 @@ body {
   cursor: pointer;
   opacity: 0;
   animation: slideInLeft 0.6s ease-out forwards;
+  position: relative;
+}
+
+.location-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(212, 165, 149, 0.1) 100%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 20px;
 }
 
 .location-card:nth-child(3) {
@@ -255,13 +274,13 @@ body {
 }
 
 .location-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 15px 50px rgba(212, 165, 149, 0.3);
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 70px rgba(212, 165, 149, 0.4);
   border-color: var(--accent-rose);
 }
 
 .location-header {
-  padding: 35px;
+  padding: 40px 35px;
   background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--accent-rose) 100%);
   color: white;
   position: relative;
@@ -275,14 +294,15 @@ body {
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
   animation: shimmer 4s ease-in-out infinite;
 }
 
 .location-header h3 {
-  font-size: 1.8rem;
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
   letter-spacing: 0.5px;
   position: relative;
   z-index: 1;
@@ -298,17 +318,18 @@ body {
 }
 
 .location-action {
-  padding: 30px 35px;
-  background: linear-gradient(135deg, rgba(212, 165, 149, 0.1) 0%, rgba(212, 165, 165, 0.1) 100%);
+  padding: 35px 35px;
+  background: linear-gradient(135deg, rgba(212, 165, 149, 0.08) 0%, rgba(212, 165, 165, 0.08) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   border-top: 2px solid rgba(212, 165, 149, 0.3);
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  flex-grow: 1;
 }
 
 .location-card:hover .location-action {
-  background: linear-gradient(135deg, rgba(212, 165, 149, 0.2) 0%, rgba(212, 165, 165, 0.2) 100%);
+  background: linear-gradient(135deg, rgba(212, 165, 149, 0.15) 0%, rgba(212, 165, 165, 0.15) 100%);
 }
 
 .action-text {
@@ -669,6 +690,18 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* 2-Column Grid for Tablet & Desktop */
+@media (min-width: 769px) {
+  .locations {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+
+  .location-card {
+    max-width: 100%;
   }
 }
 
