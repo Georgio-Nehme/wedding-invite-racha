@@ -43,7 +43,7 @@ export function initSectionAnimations() {
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
+        (entry.target as HTMLElement).style.opacity = '1';
       }
     });
   }, {

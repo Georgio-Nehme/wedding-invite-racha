@@ -12,7 +12,7 @@ export const sampleRSVPData = {
 
 // Mock API for demo
 export class MockRSVPManager {
-  async fetchInvitees(inviteId: string) {
+  async fetchInvitees(_inviteId: string) {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 500));
     return sampleRSVPData;
