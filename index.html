@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Racha & Jean Maria - Wedding Invite</title>
+  </head>
+  <body>
+    <div id="background-carousel"></div>
+
+    <!-- Audio Player -->
+    <div id="music-player">
+      <button id="music-toggle" title="Toggle Music">
+        <span class="music-icon">🎵</span>
+      </button>
+      <audio id="background-music" loop>
+        <!-- Source URL will be set by JavaScript from env variables -->
+      </audio>
+    </div>
+    
+    <div id="app">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1 class="names">Racha <span class="ampersand">&</span> Jean Maria</h1>
+          <p class="wedding-date">March 26, 2026</p>
+        </div>
+      </section>
+
+      <!-- Introduction Section -->
+      <section class="introduction">
+        <div class="intro-content">
+          <p class="intro-text">
+            We joyfully invite you to celebrate the union of our hearts as we say "I do" 
+            and embark on this beautiful journey together. Join us for an unforgettable 
+            celebration filled with love, laughter, and cherished memories.
+          </p>
+        </div>
+      </section>
+
+      <!-- Locations Section -->
+      <section class="locations">
+        <h2>Wedding Events</h2>
+        
+        <a href="https://www.google.com/maps/search/bride+house/@40.7127847,-74.0059413,15z" target="_blank" class="location-card">
+          <div class="location-header">
+            <h3>Bride's House</h3>
+            <p class="timing">8:00 AM - Preparation</p>
+          </div>
+          <div class="location-action">
+            <span class="action-text">📍 View on Maps</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/groom+house/@40.7228,-74.0160,15z" target="_blank" class="location-card">
+          <div class="location-header">
+            <h3>Groom's House</h3>
+            <p class="timing">9:00 AM - Preparation</p>
+          </div>
+          <div class="location-action">
+            <span class="action-text">📍 View on Maps</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/church/@40.7027,-73.9960,15z" target="_blank" class="location-card">
+          <div class="location-header">
+            <h3>Church Ceremony</h3>
+            <p class="timing">11:00 AM - 12:00 PM</p>
+          </div>
+          <div class="location-action">
+            <span class="action-text">📍 View on Maps</span>
+          </div>
+        </a>
+
+        <a href="https://www.google.com/maps/search/wedding+venue/@40.6927,-73.9860,15z" target="_blank" class="location-card">
+          <div class="location-header">
+            <h3>Wedding Venue</h3>
+            <p class="timing">3:00 PM - Reception</p>
+          </div>
+          <div class="location-action">
+            <span class="action-text">📍 View on Maps</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- RSVP Section -->
+      <section class="rsvp-section">
+        <div class="rsvp-container">
+          <h2>Please RSVP</h2>
+          <p class="rsvp-subtitle">Confirm your attendance for the wedding</p>
+
+          <div id="rsvp-loading" class="loading" style="display: none;">Loading...</div>
+          <div id="rsvp-error" class="error" style="display: none;">
+            <p>Unable to load your invitation. Please check your invite link.</p>
+          </div>
+
+          <form id="rsvp-form" style="display: block;">
+            <div class="family-name" id="family-name-display">Sample Family</div>
+
+            <div class="form-group">
+              <label class="form-label">Who will be attending?</label>
+              <div id="family-members" class="family-members-list">
+                <!-- Sample members will be inserted here -->
+              </div>
+            </div>
+
+            <button type="submit" id="rsvp-submit" class="rsvp-submit-btn">RSVP</button>
+          </form>
+
+          <div id="rsvp-success" class="success-message" style="display: none;">
+            <h3>✅ Thank You!</h3>
+            <p>Your RSVP has been confirmed. We look forward to seeing you!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bank Details Section -->
+      <section class="bank-section">
+        <div class="bank-container">
+          <h2>Bank Transfer</h2>
+          <div class="bank-card scroll-animate">
+            <div class="card-icon">🏦</div>
+            <div class="bank-details">
+              <div class="detail-row">
+                <span class="label">Account Holder:</span>
+                <span class="value">Racha & Jean Maria</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">IBAN:</span>
+                <span class="value iban">DE89 3704 0044 0532 0130 00</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">BIC/SWIFT:</span>
+                <span class="value">DEUTDEDBBER</span>
+              </div>
+              <div class="detail-row">
+                <span class="label">Bank:</span>
+                <span class="value">Deutsche Bank</span>
+              </div>
+              <p class="bank-note">💝 Your gift is greatly appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

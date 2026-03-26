@@ -1,0 +1,864 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-beige: #f5e6d3;
+  --secondary-gold: #d4af96;
+  --accent-rose: #d4a5a5;
+  --dark-brown: #5a4a42;
+  --light-cream: #faf8f5;
+  --text-dark: #4a3f3f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+#background-carousel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -1;
+  transition: background-image 0.8s ease-in-out;
+}
+
+#background-carousel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+#app {
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content {
+  animation: fadeInDown 1.2s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.names {
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.ampersand {
+  font-style: italic;
+  font-size: 3.5rem;
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.wedding-date {
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Music Player */
+#music-player {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+}
+
+#music-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--accent-rose) 100%);
+  border: 2px solid var(--light-cream);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 165, 149, 0.3);
+  position: relative;
+}
+
+#music-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(212, 165, 149, 0.5);
+}
+
+#music-toggle:active {
+  transform: scale(0.95);
+}
+
+#music-toggle.playing::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--secondary-gold);
+  animation: pulse 1.5s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Introduction Section */
+.introduction {
+  padding: 80px 20px;
+  background: rgba(245, 230, 211, 0.92);
+  backdrop-filter: blur(10px);
+  border-top: 2px solid var(--secondary-gold);
+  border-bottom: 2px solid var(--secondary-gold);
+  animation: fadeInUp 1s ease-out;
+}
+
+.intro-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* Locations Section */
+.locations {
+  padding: 80px 20px;
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.locations h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: white;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.location-card {
+  max-width: 500px;
+  margin: 0 auto 50px;
+  background: linear-gradient(135deg, var(--primary-beige) 0%, var(--light-cream) 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(90, 74, 66, 0.15);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+  border: 2px solid var(--secondary-gold);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.location-card:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.location-card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+.location-card:nth-child(5) {
+  animation-delay: 0.3s;
+}
+
+.location-card:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+.location-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(212, 165, 149, 0.3);
+  border-color: var(--accent-rose);
+}
+
+.location-header {
+  padding: 35px;
+  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--accent-rose) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.location-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+.location-header h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+.timing {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.95;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 1;
+}
+
+.location-action {
+  padding: 30px 35px;
+  background: linear-gradient(135deg, rgba(212, 165, 149, 0.1) 0%, rgba(212, 165, 165, 0.1) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid rgba(212, 165, 149, 0.3);
+  transition: background 0.3s ease;
+}
+
+.location-card:hover .location-action {
+  background: linear-gradient(135deg, rgba(212, 165, 149, 0.2) 0%, rgba(212, 165, 165, 0.2) 100%);
+}
+
+.action-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--secondary-gold);
+  letter-spacing: 0.3px;
+  transition: transform 0.3s ease;
+}
+
+.location-card:hover .action-text {
+  transform: scale(1.08);
+}
+
+/* RSVP Section */
+.rsvp-section {
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsvp-container {
+  max-width: 600px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-beige) 0%, var(--light-cream) 100%);
+  border-radius: 16px;
+  padding: 50px 40px;
+  box-shadow: 0 10px 40px rgba(90, 74, 66, 0.15);
+  border: 2px solid var(--secondary-gold);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.rsvp-container h2 {
+  font-size: 2.5rem;
+  color: var(--secondary-gold);
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.rsvp-subtitle {
+  text-align: center;
+  color: var(--text-dark);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.family-name {
+  text-align: center;
+  font-size: 1.3rem;
+  color: var(--accent-rose);
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-label {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.family-members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.member-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-dark);
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.member-checkbox:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: var(--secondary-gold);
+}
+
+.member-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  accent-color: var(--secondary-gold);
+}
+
+.rsvp-submit-btn {
+  width: 100%;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--accent-rose) 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 165, 149, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.rsvp-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(212, 165, 149, 0.5);
+}
+
+.rsvp-submit-btn:active {
+  transform: translateY(0);
+}
+
+.rsvp-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.rsvp-submit-btn.success {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+}
+
+.loading,
+.error,
+.success-message {
+  text-align: center;
+  padding: 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.loading {
+  color: var(--secondary-gold);
+  font-weight: 500;
+}
+
+.error {
+  background: rgba(244, 67, 54, 0.1);
+  border: 2px solid #f44336;
+  color: #c62828;
+}
+
+.error p {
+  margin: 0;
+}
+
+.success-message {
+  background: rgba(76, 175, 80, 0.1);
+  border: 2px solid #4caf50;
+}
+
+.success-message h3 {
+  color: #2e7d32;
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+}
+
+.success-message p {
+  color: #558b2f;
+  margin: 0;
+}
+
+/* Registry Section */
+.registry-section {
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.registry-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.registry-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 60px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Bank Details Card */
+.bank-card {
+  max-width: 600px;
+  margin: 0 auto 60px;
+  background: linear-gradient(135deg, var(--primary-beige) 0%, var(--light-cream) 100%);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(90, 74, 66, 0.15);
+  border: 2px solid var(--secondary-gold);
+}
+
+.card-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bank-card h3 {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--secondary-gold);
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+.bank-details {
+  space-y: 15px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(212, 165, 149, 0.2);
+}
+
+.detail-row:last-of-type {
+  border-bottom: none;
+}
+
+.detail-row .label {
+  font-weight: 500;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+}
+
+.detail-row .value {
+  color: var(--secondary-gold);
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+}
+
+.detail-row .value.iban {
+  letter-spacing: 0.5px;
+}
+
+.bank-note {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(212, 165, 149, 0.3);
+  color: var(--accent-rose);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+/* Registry Title */
+.registry-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: white;
+  margin: 40px 0 40px 0;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Registry Items Grid */
+.registry-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.item-card {
+  max-width: 100%;
+  background: linear-gradient(135deg, var(--primary-beige) 0%, var(--light-cream) 100%);
+  border-radius: 12px;
+  padding: 30px 25px;
+  box-shadow: 0 10px 40px rgba(90, 74, 66, 0.15);
+  border: 2px solid var(--secondary-gold);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.item-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(212, 165, 149, 0.3);
+}
+
+.item-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.item-card h4 {
+  font-size: 1.3rem;
+  color: var(--secondary-gold);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.item-price {
+  font-size: 1.4rem;
+  color: var(--accent-rose);
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.item-description {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  margin: 15px 0;
+  line-height: 1.5;
+}
+
+.registry-btn {
+  margin-top: 15px;
+  padding: 10px 25px;
+  background: linear-gradient(135deg, var(--secondary-gold) 0%, var(--accent-rose) 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 165, 149, 0.2);
+}
+
+.registry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 165, 149, 0.4);
+}
+
+/* Scroll Animation */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: scrollFadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes scrollFadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .registry-items {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .bank-card {
+    padding: 30px 25px;
+  }
+
+  .bank-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .item-card {
+    padding: 25px 20px;
+  }
+
+  .item-icon {
+    font-size: 2rem;
+  }
+
+  .item-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .item-price {
+    font-size: 1.2rem;
+  }
+
+  #music-player {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  #music-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .names {
+    font-size: 2.5rem;
+  }
+
+  .ampersand {
+    font-size: 2.2rem;
+    margin: 0 10px;
+  }
+
+  .wedding-date {
+    font-size: 1.2rem;
+  }
+
+  .introduction {
+    padding: 60px 20px;
+  }
+
+  .intro-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .locations {
+    padding: 60px 15px;
+  }
+
+  .locations h2 {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
+  .location-card {
+    max-width: 100%;
+    margin: 0 0 35px 0;
+  }
+
+  .location-header {
+    padding: 25px;
+  }
+
+  .location-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .timing {
+    font-size: 0.95rem;
+  }
+
+  .location-action {
+    padding: 20px 25px;
+  }
+
+  .action-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .names {
+    font-size: 1.8rem;
+  }
+
+  .ampersand {
+    font-size: 1.6rem;
+    margin: 0 8px;
+  }
+
+  .wedding-date {
+    font-size: 1rem;
+  }
+
+  .introduction {
+    padding: 40px 15px;
+  }
+
+  .intro-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .locations {
+    padding: 40px 15px;
+  }
+
+  .locations h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .location-header {
+    padding: 20px;
+  }
+
+  .location-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .timing {
+    font-size: 0.85rem;
+  }
+
+  .location-action {
+    padding: 18px 20px;
+  }
+
+  .action-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .rsvp-container {
+    padding: 30px 20px;
+  }
+
+  .rsvp-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .family-name {
+    font-size: 1.1rem;
+  }
+
+  .form-label {
+    font-size: 1rem;
+  }
+
+  .member-checkbox {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  .member-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+  }
+
+  .rsvp-submit-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
