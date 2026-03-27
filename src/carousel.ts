@@ -1,9 +1,11 @@
 import './styles.css';
+import image1 from './assets/image1.jpg';
+import image2 from './assets/image2.jpg';
 
 // Sample background images - using placeholder images
 const backgroundImages = [
-  'C:\Users\Georgio\Desktop\wedd\copilot test\wedding invite\src\assets\image1.jpg',
-  'C:\Users\Georgio\Desktop\wedd\copilot test\wedding invite\src\assets\image2.jpg',
+  image1,
+  image2,
 ];
 
 let currentImageIndex = 0;

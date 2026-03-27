@@ -1,16 +1,16 @@
+import musicFile from './assets/zad.mp3';
+
 // Music Player Logic with Environment Variables
 export function initMusicPlayer() {
   // Read environment variables with fallback defaults
-  const musicUrl = import.meta.env.VITE_MUSIC_URL || 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+  const musicUrl = musicFile;
   const baseVolume = parseFloat(import.meta.env.VITE_MUSIC_VOLUME) || 0.3;
   const fadeStep = parseFloat(import.meta.env.VITE_MUSIC_FADE_STEP) || 0.05;
   const fadeInterval = parseInt(import.meta.env.VITE_MUSIC_FADE_INTERVAL) || 100;
-  const autoplay = import.meta.env.VITE_MUSIC_AUTOPLAY === 'true';
 
   const audio = document.getElementById('background-music') as HTMLAudioElement;
-  const toggleBtn = document.getElementById('music-toggle') as HTMLButtonElement;
 
-  if (!audio || !toggleBtn) return;
+  if (!audio) return;
 
   // Set audio source
   const source = document.createElement('source');
@@ -18,82 +18,60 @@ export function initMusicPlayer() {
   source.type = 'audio/mpeg';
   audio.appendChild(source);
 
+  console.log('Music URL:', musicUrl);
+
   // Set initial volume
   audio.volume = baseVolume;
 
-  // Handle toggle button click
-  toggleBtn.addEventListener('click', () => {
-    if (audio.paused) {
-      // Fade in
-      audio.volume = 0;
-      audio.play().catch(err => {
-        console.log('Playback prevented:', err);
-      });
-      
-      let volume = 0;
-      const fadeInInterval = setInterval(() => {
-        volume += fadeStep;
-        if (volume >= baseVolume) {
-          audio.volume = baseVolume;
-          clearInterval(fadeInInterval);
-        } else {
-          audio.volume = volume;
-        }
-      }, fadeInterval);
-
-      toggleBtn.classList.add('playing');
-    } else {
-      // Fade out
-      let volume = audio.volume;
-      const fadeOutInterval = setInterval(() => {
-        volume -= fadeStep;
-        if (volume <= 0) {
-          audio.pause();
-          audio.volume = baseVolume; // Reset for next play
-          clearInterval(fadeOutInterval);
-        } else {
-          audio.volume = volume;
-        }
-      }, fadeInterval);
-
-      toggleBtn.classList.remove('playing');
-    }
-  });
-
-  // Listen to play/pause events
-  audio.addEventListener('play', () => {
-    toggleBtn.classList.add('playing');
-  });
-
-  audio.addEventListener('pause', () => {
-    toggleBtn.classList.remove('playing');
-  });
-
-  // Autoplay if enabled
-  if (autoplay) {
-    // Start muted to bypass browser autoplay policy
-    audio.muted = true;
-    audio.volume = 0;
+  // Auto-start music with fade in - requires user interaction
+  audio.muted = true;
+  audio.volume = 0;
+  
+  // Try to play on page load
+  audio.play().then(() => {
+    console.log('Music started playing');
+    // Fade in
+    let volume = 0;
+    const fadeInInterval = setInterval(() => {
+      volume += fadeStep;
+      if (volume >= baseVolume) {
+        audio.volume = baseVolume;
+        audio.muted = false;
+        clearInterval(fadeInInterval);
+      } else {
+        audio.volume = volume;
+      }
+    }, fadeInterval);
+  }).catch(err => {
+    console.error('Autoplay prevented by browser policy or file error:', err);
     
-    audio.play().then(() => {
-      // Fade in
-      let volume = 0;
-      const fadeInInterval = setInterval(() => {
-        volume += fadeStep;
-        if (volume >= baseVolume) {
-          audio.volume = baseVolume;
-          audio.muted = false;
-          clearInterval(fadeInInterval);
-        } else {
-          audio.volume = volume;
-        }
-      }, fadeInterval);
-
-      toggleBtn.classList.add('playing');
-    }).catch(err => {
-      console.log('Autoplay prevented by browser policy:', err);
-      // User will need to click button to start
-      audio.muted = false;
-    });
-  }
+    // If autoplay fails, play on first user interaction
+    const playAudio = () => {
+      audio.muted = true;
+      audio.volume = 0;
+      audio.play().then(() => {
+        console.log('Music started after user interaction');
+        let volume = 0;
+        const fadeInInterval = setInterval(() => {
+          volume += fadeStep;
+          if (volume >= baseVolume) {
+            audio.volume = baseVolume;
+            audio.muted = false;
+            clearInterval(fadeInInterval);
+          } else {
+            audio.volume = volume;
+          }
+        }, fadeInterval);
+      }).catch(e => console.error('Failed to play music:', e));
+      
+      // Remove listeners after first interaction
+      document.removeEventListener('click', playAudio);
+      document.removeEventListener('touchstart', playAudio);
+    };
+    
+    document.addEventListener('click', playAudio);
+    document.addEventListener('touchstart', playAudio);
+  });
 }
+
+
