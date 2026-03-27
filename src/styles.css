@@ -966,6 +966,20 @@ body {
   animation: fadeInUp 0.8s ease-out;
 }
 
+/* Bank Section */
+.bank-section {
+  padding: 80px 20px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bank-container {
+  max-width: 600px;
+  width: 100%;
+}
+
 /* Bank Details Card */
 .bank-card {
   max-width: 600px;
