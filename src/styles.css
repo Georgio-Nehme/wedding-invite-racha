@@ -39,6 +39,12 @@ body {
   transition: background-image 0.8s ease-in-out;
 }
 
+@media (max-width: 768px) {
+  #background-carousel {
+    background-attachment: scroll;
+  }
+}
+
 #background-carousel::before {
   content: '';
   position: absolute;
@@ -544,7 +550,7 @@ body {
 /* Venue Card - Festive, Celebratory */
 .venue-card {
   background: linear-gradient(135deg, rgba(184, 230, 213, 0.95) 0%, rgba(240, 249, 247, 0.95) 100%);
-  border: 2px dashed var(--secondary-gold);
+  border: 2px solid var(--secondary-gold);
   box-shadow: 0 10px 40px rgba(82, 183, 136, 0.2);
   position: relative;
 }
