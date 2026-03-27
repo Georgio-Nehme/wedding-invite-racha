@@ -1,9 +1,9 @@
-import musicFile from './assets/zad.mp3';
+import musicFile from './assets/zad.mp3?url';
 
 // Music Player Logic with Environment Variables
 export function initMusicPlayer() {
   // Read environment variables with fallback defaults
-  const musicUrl = musicFile;
+  const musicUrl = musicFile || '/wedding-invite-racha/assets/zad.mp3';
   const baseVolume = parseFloat(import.meta.env.VITE_MUSIC_VOLUME) || 0.3;
   const fadeStep = parseFloat(import.meta.env.VITE_MUSIC_FADE_STEP) || 0.05;
   const fadeInterval = parseInt(import.meta.env.VITE_MUSIC_FADE_INTERVAL) || 100;

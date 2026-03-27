@@ -4,28 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Racha & Jean Maria - Wedding Invite</title>
-    <script type="module" crossorigin src="/wedding-invite-racha/assets/index-C6kQ5diK.js"></script>
-    <link rel="stylesheet" crossorigin href="/wedding-invite-racha/assets/index-5TwhET0H.css">
+    <script type="module" crossorigin src="/wedding-invite-racha/assets/index-CR7vXEkB.js"></script>
+    <link rel="stylesheet" crossorigin href="/wedding-invite-racha/assets/index-Dv_M_WA2.css">
   </head>
   <body>
     <div id="background-carousel"></div>
 
     <!-- Audio Player -->
-    <div id="music-player">
-      <button id="music-toggle" title="Toggle Music">
-        <span class="music-icon">🎵</span>
-      </button>
-      <audio id="background-music" loop>
-        <!-- Source URL will be set by JavaScript from env variables -->
-      </audio>
-    </div>
+    <audio id="background-music" loop>
+      <!-- Source URL will be set by JavaScript from env variables -->
+    </audio>
     
     <div id="app">
       <!-- Hero Section -->
       <section class="hero">
         <div class="hero-content">
-          <h1 class="names">Racha <span class="ampersand">&</span> Jean Maria</h1>
-          <p class="wedding-date">March 26, 2026</p>
+          <div class="parents-section">
+            <div class="groom-parents-side">
+              <p class="parents-names" id="groom-parents">Loading...</p>
+              <p class="parents-label">Groom's Parents</p>
+            </div>
+            <div class="bride-parents-side">
+              <p class="parents-names" id="bride-parents">Loading...</p>
+              <p class="parents-label">Bride's Parents</p>
+            </div>
+          </div>
+          <h1 class="names"><span class="groom-name" id="groom-name">Loading...</span> <span class="ampersand">&</span> <span class="bride-name" id="bride-name">Loading...</span></h1>
+          <p class="invite-text">invite you to celebrate the union of our hearts</p>
+          <p class="wedding-date" id="wedding-date">Loading...</p>
         </div>
       </section>
 
@@ -40,49 +46,135 @@
         </div>
       </section>
 
+      <!-- Countdown Section -->
+      <section class="countdown-section">
+        <div class="countdown-container">
+          <h2>The Big Day Awaits</h2>
+          <div class="countdown-timer">
+            <div class="countdown-item">
+              <div class="countdown-number" id="countdown-days">0</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="countdown-hours">0</div>
+              <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="countdown-minutes">0</div>
+              <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="countdown-seconds">0</div>
+              <div class="countdown-label">Seconds</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Locations Section -->
       <section class="locations">
-        <h2>Wedding Events</h2>
+        <h2>Wedding Timeline</h2>
         
-        <a href="https://www.google.com/maps/search/bride+house/@40.7127847,-74.0059413,15z" target="_blank" class="location-card">
-          <div class="location-header">
-            <h3>Bride's House</h3>
-            <p class="timing">8:00 AM - Preparation</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-icon house-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <a href="https://www.google.com/maps/search/bride+house/@40.7127847,-74.0059413,15z" target="_blank" class="location-card house-card">
+                <div class="location-header">
+                  <h3>Bride's House</h3>
+                  <p class="timing">8:00 AM</p>
+                </div>
+                <p class="event-description">Preparation & Getting Ready</p>
+                <div class="location-action">
+                  <span class="action-text">📍 View on Maps</span>
+                </div>
+              </a>
+            </div>
           </div>
-          <div class="location-action">
-            <span class="action-text">📍 View on Maps</span>
-          </div>
-        </a>
 
-        <a href="https://www.google.com/maps/search/groom+house/@40.7228,-74.0160,15z" target="_blank" class="location-card">
-          <div class="location-header">
-            <h3>Groom's House</h3>
-            <p class="timing">9:00 AM - Preparation</p>
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-icon house-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <a href="https://www.google.com/maps/search/groom+house/@40.7228,-74.0160,15z" target="_blank" class="location-card house-card">
+                <div class="location-header">
+                  <h3>Groom's House</h3>
+                  <p class="timing">9:00 AM</p>
+                </div>
+                <p class="event-description">Preparation & Getting Ready</p>
+                <div class="location-action">
+                  <span class="action-text">📍 View on Maps</span>
+                </div>
+              </a>
+            </div>
           </div>
-          <div class="location-action">
-            <span class="action-text">📍 View on Maps</span>
-          </div>
-        </a>
 
-        <a href="https://www.google.com/maps/search/church/@40.7027,-73.9960,15z" target="_blank" class="location-card">
-          <div class="location-header">
-            <h3>Church Ceremony</h3>
-            <p class="timing">11:00 AM - 12:00 PM</p>
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-icon church-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L8 6v4H2v12h20V10h-6V6z"></path>
+                  <line x1="12" y1="9" x2="12" y2="15"></line>
+                  <line x1="9" y1="12" x2="15" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <a href="https://www.google.com/maps/search/church/@40.7027,-73.9960,15z" target="_blank" class="location-card church-card">
+                <div class="location-header">
+                  <h3>Church Ceremony</h3>
+                  <p class="timing">11:00 AM - 12:00 PM</p>
+                </div>
+                <p class="event-description">Let's Say "I Do"</p>
+                <div class="location-action">
+                  <span class="action-text">📍 View on Maps</span>
+                </div>
+              </a>
+            </div>
           </div>
-          <div class="location-action">
-            <span class="action-text">📍 View on Maps</span>
-          </div>
-        </a>
 
-        <a href="https://www.google.com/maps/search/wedding+venue/@40.6927,-73.9860,15z" target="_blank" class="location-card">
-          <div class="location-header">
-            <h3>Wedding Venue</h3>
-            <p class="timing">3:00 PM - Reception</p>
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-icon venue-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"></path>
+                  <rect x="4" y="4" width="16" height="3"></rect>
+                  <circle cx="8" cy="10" r="1"></circle>
+                  <circle cx="12" cy="10" r="1"></circle>
+                  <circle cx="16" cy="10" r="1"></circle>
+                  <circle cx="8" cy="14" r="1"></circle>
+                  <circle cx="12" cy="14" r="1"></circle>
+                  <circle cx="16" cy="14" r="1"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="timeline-content">
+              <a href="https://www.google.com/maps/search/wedding+venue/@40.6927,-73.9860,15z" target="_blank" class="location-card venue-card">
+                <div class="location-header">
+                  <h3>Wedding Venue</h3>
+                  <p class="timing">3:00 PM onwards</p>
+                </div>
+                <p class="event-description">Reception & Celebration</p>
+                <div class="location-action">
+                  <span class="action-text">📍 View on Maps</span>
+                </div>
+              </a>
+            </div>
           </div>
-          <div class="location-action">
-            <span class="action-text">📍 View on Maps</span>
-          </div>
-        </a>
+        </div>
       </section>
 
       <!-- RSVP Section -->
