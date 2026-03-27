@@ -22,35 +22,18 @@ export function initMusicPlayer() {
 
   // Set initial volume
   audio.volume = baseVolume;
-
-  // Auto-start music with fade in - requires user interaction
-  audio.muted = true;
-  audio.volume = 0;
   
-  // Try to play on page load
-  audio.play().then(() => {
-    console.log('Music started playing');
-    // Fade in
-    let volume = 0;
-    const fadeInInterval = setInterval(() => {
-      volume += fadeStep;
-      if (volume >= baseVolume) {
-        audio.volume = baseVolume;
-        audio.muted = false;
-        clearInterval(fadeInInterval);
-      } else {
-        audio.volume = volume;
-      }
-    }, fadeInterval);
-  }).catch(err => {
-    console.error('Autoplay prevented by browser policy or file error:', err);
+  // iOS and mobile devices are very strict about autoplay
+  // Always require user interaction
+  const playAudio = () => {
+    audio.muted = true;
+    audio.volume = 0;
     
-    // If autoplay fails, play on first user interaction
-    const playAudio = () => {
-      audio.muted = true;
-      audio.volume = 0;
-      audio.play().then(() => {
-        console.log('Music started after user interaction');
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        console.log('Music started playing');
+        // Fade in
         let volume = 0;
         const fadeInInterval = setInterval(() => {
           volume += fadeStep;
@@ -62,16 +45,33 @@ export function initMusicPlayer() {
             audio.volume = volume;
           }
         }, fadeInterval);
-      }).catch(e => console.error('Failed to play music:', e));
-      
-      // Remove listeners after first interaction
-      document.removeEventListener('click', playAudio);
-      document.removeEventListener('touchstart', playAudio);
-    };
-    
-    document.addEventListener('click', playAudio);
-    document.addEventListener('touchstart', playAudio);
+      }).catch(e => {
+        console.error('Failed to play music:', e);
+      });
+    }
+  };
+  
+  // Listen for first user interaction
+  const events = ['click', 'touchstart', 'touchend'];
+  const startAudio = () => {
+    playAudio();
+    // Remove listeners after first interaction
+    events.forEach(event => {
+      document.removeEventListener(event, startAudio);
+    });
+  };
+  
+  events.forEach(event => {
+    document.addEventListener(event, startAudio);
   });
+  
+  // Also try to autoplay on page load (works on some browsers)
+  const autoPlayPromise = audio.play();
+  if (autoPlayPromise !== undefined) {
+    autoPlayPromise.catch(() => {
+      console.log('Autoplay blocked, waiting for user interaction');
+    });
+  }
 }
 
 
