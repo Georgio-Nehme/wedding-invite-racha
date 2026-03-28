@@ -4,8 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Racha & Jean Maria - Wedding Invite</title>
+    <style>
+      /* Critical loading screen styles - must be inline to prevent flash */
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes heartbeat {
+        0%, 50%, 100% { transform: scale(1); }
+        25%, 75% { transform: scale(1.1); }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      #loading-screen {
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+      }
+      #loading-screen.fade-out {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .hearts {
+        animation: heartbeat 2s ease-in-out infinite;
+      }
+      .heart {
+        animation: float 3s ease-in-out infinite;
+      }
+      .heart:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .heart:nth-child(3) {
+        animation-delay: 1s;
+      }
+      /* Hide main content initially */
+      #app {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+      #app.loaded {
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
+    <!-- Loading Screen - Visible by default -->
+    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #b8e6d5 0%, #52b788 50%, #40916c 100%); display: flex; justify-content: center; align-items: center; z-index: 9999;">
+      <div class="loading-content" style="text-align: center; color: white;">
+        <div class="loading-rings" style="position: relative; width: 120px; height: 120px; margin: 0 auto 30px;">
+          <div class="ring ring-1" style="position: absolute; border: 4px solid transparent; border-top: 4px solid white; border-radius: 50%; width: 120px; height: 120px; animation: spin 1.5s linear infinite;"></div>
+          <div class="ring ring-2" style="position: absolute; border: 4px solid transparent; border-top: 4px solid white; border-radius: 50%; width: 90px; height: 90px; top: 15px; left: 15px; animation: spin 1.2s linear infinite reverse;"></div>
+          <div class="ring ring-3" style="position: absolute; border: 4px solid transparent; border-top: 4px solid white; border-radius: 50%; width: 60px; height: 60px; top: 30px; left: 30px; animation: spin 1s linear infinite;"></div>
+        </div>
+        <h2 class="loading-text" style="font-family: 'Great Vibes', cursive; font-size: 2rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Loading Your Invitation</h2>
+        <div class="hearts" style="display: flex; justify-content: center; gap: 10px;">
+          <span class="heart" style="font-size: 1.5rem;">💕</span>
+          <span class="heart" style="font-size: 1.5rem;">💖</span>
+          <span class="heart" style="font-size: 1.5rem;">💗</span>
+        </div>
+      </div>
+    </div>
+
     <div id="background-carousel"></div>
 
     <!-- Audio Player -->
@@ -206,29 +265,47 @@
         </div>
       </section>
 
-      <!-- Bank Details Section -->
+      <!-- Wish Money Account Section -->
       <section class="bank-section">
         <div class="bank-container">
           <div class="bank-card scroll-animate">
-            <div class="card-icon">🏦</div>
+            <div class="card-icon">
+              <img src="/src/assets/bank.png" alt="Bank Logo" class="bank-logo" />
+            </div>
             <div class="bank-details">
               <div class="detail-row">
-                <span class="label">Account Holder:</span>
-                <span class="value">Racha & Jean Maria</span>
-              </div>
-              <div class="detail-row">
-                <span class="label">IBAN:</span>
-                <span class="value iban">DE89 3704 0044 0532 0130 00</span>
-              </div>
-              <div class="detail-row">
-                <span class="label">BIC/SWIFT:</span>
-                <span class="value">DEUTDEDBBER</span>
-              </div>
-              <div class="detail-row">
-                <span class="label">Bank:</span>
-                <span class="value">Deutsche Bank</span>
+                <span class="label">Wish Money Account:</span>
+                <span class="value wish-account" id="wish-money-account">Loading...</span>
               </div>
               <p class="bank-note">💝 Your gift is greatly appreciated!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact-section">
+        <div class="contact-container">
+          <h2>Contact Us</h2>
+          <div class="contact-cards">
+            <div class="contact-card scroll-animate">
+              <div class="contact-details">
+                <h3 id="groom-contact-name">Contact Groom</h3>
+                <div class="contact-info">
+                  <span class="contact-label">Phone:</span>
+                  <a href="tel:" class="contact-value" id="groom-phone">Loading...</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact-card scroll-animate">
+              <div class="contact-details">
+                <h3 id="bride-contact-name">Contact Bride</h3>
+                <div class="contact-info">
+                  <span class="contact-label">Phone:</span>
+                  <a href="tel:" class="contact-value" id="bride-phone">Loading...</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
